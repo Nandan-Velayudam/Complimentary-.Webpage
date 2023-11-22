@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Enter Your Name</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    #nameInput {
+      margin-top: 20px;
+      width: 300px;
+      height: 40px;
+      font-size: 24px;
+      text-align: center;
+    }
+    #submitButton {
+      margin-top: 10px;
+      font-size: 24px;
+      padding: 10px 20px;
+    }
+    #resultText {
+      display: none;
+      font-size: 60px;
+      margin-top: 50px;
+      width: 80%;
+      color: #333; /* Default color */
+    }
+    #refreshButton {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <p style="font-size: 60px;">Enter your name</p>
+    <input type="text" id="nameInput">
+    <br>
+    <input type="submit" id="submitButton" value="Submit">
+  </div>
+
+  <div id="resultText"></div>
+
+  <div id="refreshButton" onclick="refreshTextBox()">Refresh</div>
+
+  <script>
+    const affirmations = [
+      "You're amazing just the way you are.",
+      "You bring out the best in others effortlessly.",
+      "Your friendship means a lot to me.",
+      "You have a heart of gold.",
+      "You're a constant source of positivity.",
+      "Your presence makes everything better.",
+      "You're a true gem.",
+      "You're someone people can always count on.",
+      "You're irreplaceable.",
+      "You're an incredible friend."
+    ];
+
+    const submitButton = document.getElementById('submitButton');
+    const nameInput = document.getElementById('nameInput');
+    const resultText = document.getElementById('resultText');
+
+    submitButton.addEventListener('click', function() {
+      const name = nameInput.value.trim();
+      if (name !== '') {
+        const randomIndex = Math.floor(Math.random() * affirmations.length);
+        const selectedAffirmation = affirmations[randomIndex];
+        resultText.innerText = selectedAffirmation;
+        resultText.style.display = 'block';
+        const colors = ['#FF6347', '#7B68EE', '#32CD32', '#FFD700', '#4169E1', '#FF69B4'];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        resultText.style.color = randomColor;
+      }
+    });
+
+    function refreshTextBox() {
+      nameInput.value = '';
+      resultText.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
